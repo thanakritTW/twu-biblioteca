@@ -9,6 +9,7 @@ import org.junit.Before;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.mock;
 
 public class BibliotecaAppTest {
     private BibliotecaApp app;
@@ -25,7 +26,7 @@ public class BibliotecaAppTest {
     @Test
     public void WhenStartTheAppItShouldSayHello() {
 
-        app.main();
+        app.start();
 
         verify(this.printStream).println("Welcome to Biblioteca. Your one-stop-shop for great books in Bangalore!");
     }
