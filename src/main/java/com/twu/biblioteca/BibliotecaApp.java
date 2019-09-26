@@ -12,7 +12,8 @@ public class BibliotecaApp {
         PrintStream printStream = new PrintStream(System.out);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-        List<String> books = new ArrayList<>();
+        List<Book> books = new ArrayList<>();
+        books.add(new Book("My very First Book","Gwan",1996));
         Library library = new Library(books, printStream, bufferedReader);
 
         library.welcome();
