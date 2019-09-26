@@ -9,11 +9,9 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.Before;
 
-import javax.swing.*;
-
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class LibraryTest {
     private Library library;
@@ -43,6 +41,19 @@ public class LibraryTest {
 
         library.listBooks();
 
+        String expected = "Name | Author | Published Year\n";
+        expected += "First Book | First Author | 1997\n";
+
+        verify(this.printStream).println(expected);
+    }
+
+    @Test
+    public void ShowMenuAndNavigateToListOfBooksAfterSelect1() throws IOException{
+        Book book = new Book("First Book", "First Author", 1997);
+        books.add(book);
+        when(bufferedReader.readLine()).thenReturn("1");
+
+        library.showMenu();
         String expected = "Name | Author | Published Year\n";
         expected += "First Book | First Author | 1997\n";
 
