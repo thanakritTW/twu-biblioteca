@@ -21,6 +21,7 @@ public class BibliotecaAppTest {
     public void setUp() throws Exception {
         printStream = mock(PrintStream.class);
         bufferedReader = mock(BufferedReader.class);
+        app = new BibliotecaApp(printStream, bufferedReader);
     }
 
     @Test
