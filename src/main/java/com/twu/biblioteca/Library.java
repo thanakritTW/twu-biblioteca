@@ -7,20 +7,26 @@ import java.util.List;
 public class Library {
     private PrintStream printStream;
     private BufferedReader bufferedReader;
-    private List<String> books;
+    private List<Book> books;
 
-    public Library(List<String> books, PrintStream printStream, BufferedReader bufferedReader) {
+    public Library(List<Book> books, PrintStream printStream, BufferedReader bufferedReader) {
         this.books = books;
         this.printStream = printStream;
         this.bufferedReader = bufferedReader;
     }
 
     public void listBooks(){
-        String bookList = "";
-        for (String book: books) {
-            bookList += book + "\n";
+        printStream.println(displayBookInformation());
+    }
+
+    private String displayBookInformation(){
+        String bookList = "Name | Author | Published Year\n";
+        for (Book b: books) {
+            bookList += b.getName() + " | ";
+            bookList += b.getAuthor() + " | ";
+            bookList += b.getPublishedYear() + "\n";
         }
-        printStream.println(bookList);
+        return bookList;
     }
 
     public void welcome(){
