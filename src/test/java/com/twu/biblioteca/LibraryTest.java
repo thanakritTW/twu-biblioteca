@@ -9,13 +9,15 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.Before;
 
+import javax.swing.*;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.mock;
 
 public class LibraryTest {
     private Library library;
-    private List<String> books;
+    private List<Book> books;
     private PrintStream printStream;
     private BufferedReader bufferedReader;
 
@@ -35,11 +37,12 @@ public class LibraryTest {
     }
 
     @Test
-    public void ShouldBeAbleToShowListOfBooks() {
-        books.add("First Book");
+    public void EachBookShouldHaveAuthorAndYearPublished() {
+        Book book = new Book("First Book", "First Author", 1997);
+        books.add(book);
 
         library.listBooks();
 
-        verify(this.printStream).println("First Book\n");
+        verify(this.printStream).println("First Book | First Author | 1997\n");
     }
 }
