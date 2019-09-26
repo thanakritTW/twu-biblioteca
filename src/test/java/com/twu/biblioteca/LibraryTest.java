@@ -59,4 +59,13 @@ public class LibraryTest {
 
         verify(this.printStream).println(expected);
     }
+
+    @Test
+    public void GetNotifiedWhenSubmittingWrongOption() throws IOException{
+        when(bufferedReader.readLine()).thenReturn("2");
+
+        library.showMenu();
+
+        verify(this.printStream).println("Please select a valid option!");
+    }
 }
