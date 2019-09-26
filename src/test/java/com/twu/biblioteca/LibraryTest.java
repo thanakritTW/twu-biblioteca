@@ -43,6 +43,9 @@ public class LibraryTest {
 
         library.listBooks();
 
-        verify(this.printStream).println("First Book | First Author | 1997\n");
+        String expected = "Name | Author | Published Year\n";
+        expected += "First Book | First Author | 1997\n";
+
+        verify(this.printStream).println(expected);
     }
 }
