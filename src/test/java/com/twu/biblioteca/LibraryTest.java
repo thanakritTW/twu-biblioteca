@@ -28,11 +28,18 @@ public class LibraryTest {
     }
 
     @Test
+    public void ShouldSayWelcome(){
+        library.welcome();
+
+        verify(this.printStream).println("Welcome to Biblioteca. Your one-stop-shop for great books in Bangalore!");
+    }
+
+    @Test
     public void ShouldBeAbleToShowListOfBooks() {
         books.add("First Book");
 
         library.listBooks();
 
-        verify(this.printStream).println("First Book");
+        verify(this.printStream).println("First Book\n");
     }
 }

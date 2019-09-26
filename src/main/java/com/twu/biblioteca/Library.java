@@ -16,7 +16,14 @@ public class Library {
     }
 
     public void listBooks(){
-
+        String bookList = "";
+        for (String book: books) {
+            bookList += book + "\n";
+        }
+        printStream.println(bookList);
     }
 
+    public void welcome(){
+        printStream.println("Welcome to Biblioteca. Your one-stop-shop for great books in Bangalore!");
+    }
 }
