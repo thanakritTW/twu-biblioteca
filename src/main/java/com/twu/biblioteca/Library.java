@@ -9,7 +9,6 @@ public class Library {
     private PrintStream printStream;
     private BufferedReader bufferedReader;
     private List<Book> books;
-    private List<FunctionalInterface> menu;
 
     public Library(List<Book> books, PrintStream printStream, BufferedReader bufferedReader) {
         this.books = books;
@@ -58,6 +57,12 @@ public class Library {
                 break;
             default:
                 printStream.println("Please select a valid option!");
+        }
+    }
+
+    public void checkOut(int index){
+        if (index < books.size()) {
+            books.remove(index);
         }
     }
 
