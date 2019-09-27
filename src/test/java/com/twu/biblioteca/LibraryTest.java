@@ -6,6 +6,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.checkerframework.dataflow.qual.TerminatesExecution;
 import org.junit.Test;
 import org.junit.Before;
 
@@ -48,7 +49,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void ShowMenuAndNavigateToListOfBooksAfterSelect1() throws IOException{
+    public void ShowMenuAndNavigateToListOfBooksAfterSelect1() {
         Book book = new Book("First Book", "First Author", 1997);
         books.add(book);
 
@@ -60,7 +61,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void GetNotifiedWhenSubmittingWrongOption() throws IOException{
+    public void GetNotifiedWhenSubmittingWrongOption() {
 
         library.checkAction("wrong action");
 
@@ -69,10 +70,26 @@ public class LibraryTest {
     }
 
     @Test
-    public void QuitTheProgramAfterSubmittingQuit() throws IOException{
+    public void QuitTheProgramAfterSubmittingQuit() {
 
         library.checkAction("quit");
 
         verify(this.printStream).println("Bye Bye");
+    }
+
+    @Test
+    public void CheckedOutBookShouldNotBeOnTheList() {
+        Book book = new Book("First Book", "First Author", 1997);
+        books.add(book);
+        Book book2 = new Book("Second Book", "Second Author", 1990);
+        books.add(book2);
+
+        library.checkOut(0);
+
+        library.checkAction("1");
+        String expected = "Name | Author | Published Year\n";
+        expected += "Second Book | Second Author | 1990\n";
+
+        verify(this.printStream).println(expected);
     }
 }
