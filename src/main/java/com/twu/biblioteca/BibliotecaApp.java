@@ -14,8 +14,10 @@ public class BibliotecaApp {
 
         List<Book> books = new ArrayList<>();
         books.add(new Book("My very First Book","Gwan",1996));
-        Library library = new Library(books, printStream, bufferedReader);
+        books.add(new Book("My Second Book","GwanGwan",1970));
+        Library library = new Library(books);
 
-        library.flow();
+        Store store = new Store(library, printStream, bufferedReader);
+        store.start();
     }
 }
