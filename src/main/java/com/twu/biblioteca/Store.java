@@ -34,12 +34,13 @@ public class Store {
         String menuList = "Please select one of the following tasks\n";
         menuList += "1 : List of Books\n";
         menuList += "2 : Check out a Book\n";
-        menuList += "Select: ";
+        menuList += "3 : Return a Book\n";
+        menuList += "Select (To quit plese enter 'quit'): ";
         printStream.println(menuList);
     }
 
     public void checkOutMenu() {
-        printStream.print("Please choose a book!\nBook name: ");
+        printStream.println("Please choose a book!\nBook name: ");
         String bookName = readLine();
         if (library.checkOut(bookName)) {
             printStream.println("Thank you! Enjoy the book");
@@ -49,7 +50,13 @@ public class Store {
     }
 
     public void returningMenu(){
-
+        printStream.println("Book name to return: ");
+        String bookName = readLine();
+        if (library.returnBook(bookName)) {
+            printStream.println("Thank you for returning the book");
+        } else {
+            printStream.println("Sorry that is not a valid book to return");
+        }
     }
 
     public void checkAction(String action){
@@ -59,6 +66,9 @@ public class Store {
                 break;
             case "2":
                 checkOutMenu();
+                break;
+            case "3":
+                returningMenu();
                 break;
             case "quit":
                 printStream.println("Bye Bye");
@@ -71,9 +81,11 @@ public class Store {
     public void listBooks() {
         String bookList = "Name | Author | Published Year\n";
         for (Book b: library.getBooks()) {
-            bookList += b.getName() + " | ";
-            bookList += b.getAuthor() + " | ";
-            bookList += b.getPublishedYear() + "\n";
+            if (b.isAvailable()){
+                bookList += b.getName() + " | ";
+                bookList += b.getAuthor() + " | ";
+                bookList += b.getPublishedYear() + "\n";
+            }
         }
         printStream.println(bookList);
     }

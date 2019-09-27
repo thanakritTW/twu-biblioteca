@@ -68,7 +68,22 @@ public class StoreTest {
         verify(this.printStream).println(expected);
     }
 
+    @Test
+    public void CheckedOutBookShouldNotBeOnTheList() {
+        Book book = new Book("First Book", "First Author", 1997);
+        books.add(book);
+        Book book2 = new Book("Second Book", "Second Author", 1990);
+        books.add(book2);
 
+        book2.changeAvailability();
+
+        store.listBooks();
+
+        String expected = "Name | Author | Published Year\n";
+        expected += "First Book | First Author | 1997\n";
+
+        verify(this.printStream).println(expected);
+    }
 
     @Test
     public void ShowMenuAndNavigateToListOfBooksAfterSelect1() {
@@ -112,6 +127,8 @@ public class StoreTest {
         books.add(book);
         Book book2 = new Book("Second Book", "Second Author", 1990);
         books.add(book2);
+        // Checking out the book
+        book2.changeAvailability();
 
         when(bufferedReader.readLine()).thenReturn("Second Book");
         store.returningMenu();
