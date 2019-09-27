@@ -21,7 +21,7 @@ public class Library {
         printStream.println(displayBookInformation());
     }
 
-    private String displayBookInformation(){
+    public String displayBookInformation(){
         String bookList = "Name | Author | Published Year\n";
         for (Book b: books) {
             bookList += b.getName() + " | ";
@@ -31,15 +31,33 @@ public class Library {
         return bookList;
     }
 
+    public void flow(){
+        welcome();
+        String action = "";
+        while (!action.equals("quit")) {
+            showMenu();
+            action = readLine();
+            checkAction(action);
+        }
+    }
+
     public void showMenu(){
         String menuList = "Please select one of the following tasks\n";
         menuList += "1 : List of Books\n";
         menuList += "Select: ";
+        printStream.println(menuList);
+    }
 
-        printStream.print(menuList);
-        String action = readLine();
-        if (action.equals("1")){
-            listBooks();
+    public void checkAction(String action){
+        switch(action) {
+            case "1":
+                listBooks();
+                break;
+            case "quit":
+                printStream.println("Bye Bye");
+                break;
+            default:
+                printStream.println("Please select a valid option!");
         }
     }
 

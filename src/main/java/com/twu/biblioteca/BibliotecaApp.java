@@ -16,7 +16,6 @@ public class BibliotecaApp {
         books.add(new Book("My very First Book","Gwan",1996));
         Library library = new Library(books, printStream, bufferedReader);
 
-        library.welcome();
-        library.listBooks();
+        library.flow();
     }
 }

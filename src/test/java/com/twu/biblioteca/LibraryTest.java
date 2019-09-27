@@ -51,9 +51,8 @@ public class LibraryTest {
     public void ShowMenuAndNavigateToListOfBooksAfterSelect1() throws IOException{
         Book book = new Book("First Book", "First Author", 1997);
         books.add(book);
-        when(bufferedReader.readLine()).thenReturn("1");
 
-        library.showMenu();
+        library.checkAction("1");
         String expected = "Name | Author | Published Year\n";
         expected += "First Book | First Author | 1997\n";
 
@@ -62,10 +61,18 @@ public class LibraryTest {
 
     @Test
     public void GetNotifiedWhenSubmittingWrongOption() throws IOException{
-        when(bufferedReader.readLine()).thenReturn("2");
 
-        library.showMenu();
+        library.checkAction("wrong action");
 
         verify(this.printStream).println("Please select a valid option!");
+
+    }
+
+    @Test
+    public void QuitTheProgramAfterSubmittingQuit() throws IOException{
+
+        library.checkAction("quit");
+
+        verify(this.printStream).println("Bye Bye");
     }
 }
