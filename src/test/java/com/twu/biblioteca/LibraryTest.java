@@ -31,4 +31,26 @@ public class LibraryTest {
 
         assertThat(books, not(hasItems(firstBook)));
     }
+
+    @Test
+    public void ReturningNotExistBookShouldReturnFalse() {
+        Book firstBook = new Book("First Book", "First Author", 1997);
+        books.add(firstBook);
+        Book secondBook = new Book("Second Book", "Second Author", 1990);
+        books.add(secondBook);
+
+        assertThat(library.returnBook("First Book"), is(false));
+    }
+
+    @Test
+    public void ReturningBookShouldReturnMarkedAsAvailbleAndReturnTrue() {
+        Book firstBook = new Book("First Book", "First Author", 1997);
+        books.add(firstBook);
+        Book secondBook = new Book("Second Book", "Second Author", 1990);
+        books.add(secondBook);
+
+        library.checkOut("First Book");
+        assertThat(library.returnBook("First Book"), is(true));
+    }
+
 }

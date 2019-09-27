@@ -48,6 +48,10 @@ public class Store {
         }
     }
 
+    public void returningMenu(){
+
+    }
+
     public void checkAction(String action){
         switch(action) {
             case "1":
