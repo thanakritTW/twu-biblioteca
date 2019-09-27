@@ -18,8 +18,8 @@ public class Library {
 
     public boolean checkOut(String bookName){
         for (Book book:books){
-            if (book.getName().equals(bookName)){
-                books.remove(book);
+            if (book.getName().equals(bookName) && book.isAvailable()){
+                book.changeAvailability();
                 return true;
             }
         }
@@ -27,7 +27,13 @@ public class Library {
     }
 
     public boolean returnBook(String bookName){
-        return true;
+        for (Book book:books){
+            if (book.getName().equals(bookName) && !book.isAvailable()){
+                book.changeAvailability();
+                return true;
+            }
+        }
+        return false;
     }
 }
 

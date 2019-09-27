@@ -21,6 +21,14 @@ public class LibraryTest {
     }
 
     @Test
+    public void CheckOutBookShouldReturnFalseIfThereIsNotTheBook() {
+        Book firstBook = new Book("First Book", "First Author", 1997);
+        books.add(firstBook);
+
+        assertThat(library.checkOut("Second Book"), is(false));
+    }
+
+    @Test
     public void CheckedOutBookShouldNotBeOnTheList() {
         Book firstBook = new Book("First Book", "First Author", 1997);
         books.add(firstBook);
@@ -29,7 +37,7 @@ public class LibraryTest {
 
         library.checkOut("First Book");
 
-        assertThat(books, not(hasItems(firstBook)));
+        assertThat(firstBook.isAvailable(), is(false));
     }
 
     @Test

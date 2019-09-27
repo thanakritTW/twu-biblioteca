@@ -4,21 +4,21 @@ public class Book {
     private String name;
     private String author;
     private int publishedYear;
-    private boolean isAvailable;
+    private boolean availability;
 
     public Book(String name, String author, int publishedYear){
         this.name = name;
         this.author = author;
         this.publishedYear = publishedYear;
-        isAvailable = true;
+        availability = true;
     }
 
-    public boolean getAvailibility() {
-        return isAvailable;
+    public boolean isAvailable() {
+        return availability;
     }
 
-    public void changeAvailibility() {
-        isAvailable = !isAvailable;
+    public void changeAvailability() {
+        availability = !availability;
     }
 
     public String getName(){
