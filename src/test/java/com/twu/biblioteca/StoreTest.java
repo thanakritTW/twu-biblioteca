@@ -6,7 +6,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.checkerframework.dataflow.qual.TerminatesExecution;
 import org.junit.Test;
 import org.junit.Before;
 
@@ -29,6 +28,7 @@ public class StoreTest {
         bufferedReader = mock(BufferedReader.class);
         library = mock(Library.class);
         store = new Store(library, printStream, bufferedReader);
+
     }
 
     @Test
@@ -76,7 +76,9 @@ public class StoreTest {
         books.add(book);
         Book book2 = new Book("Second Book", "Second Author", 1990);
         books.add(book2);
-        book2.changeAvailability();
+
+
+        book2.borrowBook();
 
         when(library.getBooks()).thenReturn(books);
 
@@ -135,7 +137,7 @@ public class StoreTest {
         Book book2 = new Book("Second Book", "Second Author", 1990);
         books.add(book2);
         // Checking out the book
-        book2.changeAvailability();
+        book2.borrowBook();
         when(library.returnBook("Second Book")).thenReturn(true);
 
         when(bufferedReader.readLine()).thenReturn("Second Book");
