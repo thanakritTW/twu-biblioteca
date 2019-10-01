@@ -17,8 +17,12 @@ public class Book {
         return availability;
     }
 
-    public void changeAvailability() {
-        availability = !availability;
+    public void borrowBook() {
+        availability = false;
+    }
+
+    public void returnBook() {
+        availability = true;
     }
 
     public String getName(){
