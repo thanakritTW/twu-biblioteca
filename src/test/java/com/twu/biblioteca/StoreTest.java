@@ -27,7 +27,7 @@ public class StoreTest {
         books = new ArrayList<>();
         printStream = mock(PrintStream.class);
         bufferedReader = mock(BufferedReader.class);
-        library = new Library(books);
+        library = mock(Library.class);
         store = new Store(library, printStream, bufferedReader);
     }
 
@@ -60,6 +60,8 @@ public class StoreTest {
         Book book = new Book("First Book", "First Author", 1997);
         books.add(book);
 
+        when(library.getBooks()).thenReturn(books);
+
         store.listBooks();
 
         String expected = "Name | Author | Published Year\n";
@@ -74,8 +76,9 @@ public class StoreTest {
         books.add(book);
         Book book2 = new Book("Second Book", "Second Author", 1990);
         books.add(book2);
-
         book2.changeAvailability();
+
+        when(library.getBooks()).thenReturn(books);
 
         store.listBooks();
 
@@ -89,6 +92,7 @@ public class StoreTest {
     public void ShowMenuAndNavigateToListOfBooksAfterSelect1() {
         Book book = new Book("First Book", "First Author", 1997);
         books.add(book);
+        when(library.getBooks()).thenReturn(books);
 
         store.checkAction("1");
         String expected = "Name | Author | Published Year\n";
@@ -104,7 +108,10 @@ public class StoreTest {
         Book book2 = new Book("Second Book", "Second Author", 1990);
         books.add(book2);
 
+        when(library.checkOut("Second Book")).thenReturn(true);
+
         when(bufferedReader.readLine()).thenReturn("Second Book");
+
         store.checkOutMenu();
 
         verify(this.printStream).println("Thank you! Enjoy the book");
@@ -129,6 +136,7 @@ public class StoreTest {
         books.add(book2);
         // Checking out the book
         book2.changeAvailability();
+        when(library.returnBook("Second Book")).thenReturn(true);
 
         when(bufferedReader.readLine()).thenReturn("Second Book");
         store.returningMenu();
