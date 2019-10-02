@@ -2,22 +2,23 @@ package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.Library;
 
-public class ListBooksMenu implements Menu {
-    private Library library;
-    private String description;
+import java.io.BufferedReader;
+import java.io.PrintStream;
 
-    public ListBooksMenu(Library library, String description) {
-        this.library = library;
-        this.description = description;
+public class ListBooksMenu extends Menu implements MenuInterface{
+
+    public ListBooksMenu(Library library, String description, PrintStream printStream, BufferedReader bufferedReader) {
+        super(library, description, printStream, bufferedReader);
     }
 
-    @Override
+    public ListBooksMenu(Library library, PrintStream printStream, BufferedReader bufferedReader) {
+        super(library, "Show Books", printStream, bufferedReader);
+    }
+
+    public void show(){
+    }
+
     public String getDescription() {
         return description;
-    }
-
-    @Override
-    public String show() {
-        return null;
     }
 }

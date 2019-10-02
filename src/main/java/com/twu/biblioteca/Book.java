@@ -4,37 +4,32 @@ public class Book {
     private String name;
     private String author;
     private int publishedYear;
-    private boolean availability;
+    private boolean available;
 
-    public Book(String name, String author, int publishedYear){
+    public Book(String name, String author, int publishedYear) {
         this.name = name;
         this.author = author;
         this.publishedYear = publishedYear;
-        availability = true;
+        available = true;
     }
 
-    public boolean isAvailable() {
-        return availability;
-    }
-
-    public void borrowBook() {
-        availability = false;
-    }
-
-    public void returnBook() {
-        availability = true;
-    }
-
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public String getAuthor(){
+    public String getAuthor() {
         return author;
     }
 
-    public int getPublishedYear(){
+    public int getPublishedYear() {
         return publishedYear;
     }
 
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 }

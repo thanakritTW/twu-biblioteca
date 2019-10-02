@@ -28,7 +28,6 @@ public class StoreTest {
         bufferedReader = mock(BufferedReader.class);
         library = mock(Library.class);
         store = new Store(library, printStream, bufferedReader);
-
     }
 
     @Test
@@ -55,40 +54,6 @@ public class StoreTest {
         verify(this.printStream).println("Bye Bye");
     }
 
-    @Test
-    public void EachBookShouldHaveAuthorAndYearPublished() {
-        Book book = new Book("First Book", "First Author", 1997);
-        books.add(book);
-
-        when(library.getBooks()).thenReturn(books);
-
-        store.listBooks();
-
-        String expected = "Name | Author | Published Year\n";
-        expected += "First Book | First Author | 1997\n";
-
-        verify(this.printStream).println(expected);
-    }
-
-    @Test
-    public void CheckedOutBookShouldNotBeOnTheList() {
-        Book book = new Book("First Book", "First Author", 1997);
-        books.add(book);
-        Book book2 = new Book("Second Book", "Second Author", 1990);
-        books.add(book2);
-
-
-        book2.borrowBook();
-
-        when(library.getBooks()).thenReturn(books);
-
-        store.listBooks();
-
-        String expected = "Name | Author | Published Year\n";
-        expected += "First Book | First Author | 1997\n";
-
-        verify(this.printStream).println(expected);
-    }
 
     @Test
     public void ShowMenuAndNavigateToListOfBooksAfterSelect1() {
@@ -137,7 +102,7 @@ public class StoreTest {
         Book book2 = new Book("Second Book", "Second Author", 1990);
         books.add(book2);
         // Checking out the book
-        book2.borrowBook();
+        book2.setAvailable(false);
         when(library.returnBook("Second Book")).thenReturn(true);
 
         when(bufferedReader.readLine()).thenReturn("Second Book");

@@ -19,7 +19,7 @@ public class Library {
     public boolean checkOut(String bookName){
         for (Book b:books){
             if (b.getName().equals(bookName) && b.isAvailable()){
-                b.borrowBook();
+                b.setAvailable(false);
                 return true;
             }
         }
@@ -29,7 +29,7 @@ public class Library {
     public boolean returnBook(String bookName){
         for (Book b:books){
             if (b.getName().equals(bookName) && !b.isAvailable()){
-                b.returnBook();
+                b.setAvailable(true);
                 return true;
             }
         }
