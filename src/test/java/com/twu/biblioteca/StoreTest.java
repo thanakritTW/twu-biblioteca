@@ -67,7 +67,7 @@ public class StoreTest {
 
         verify(this.printStream).println(expected);
     }
-    
+
     @Test
     public void ShouldTellUsefulMessageAfterSuccessfullyReturnBook() throws IOException {
         Book book = new Book("First Book", "First Author", 1997);

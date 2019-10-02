@@ -3,6 +3,7 @@ package com.twu.biblioteca.menu;
 import com.twu.biblioteca.Library;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 
 public class CheckOutMenu extends Menu implements MenuInterface{
@@ -16,6 +17,23 @@ public class CheckOutMenu extends Menu implements MenuInterface{
     }
 
     public void show(){
+        printStream.println("Please choose a book!\nBook name: ");
+        String bookName = readLine();
+        if (library.checkOut(bookName)) {
+            printStream.println("Thank you! Enjoy the book");
+        } else {
+            printStream.println("Sorry, that book is not available");
+        }
+    }
+
+    private String readLine(){
+        String action = null;
+        try {
+            action = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return action;
     }
 
     public String getDescription() {

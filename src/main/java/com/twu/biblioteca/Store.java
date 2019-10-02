@@ -40,13 +40,6 @@ public class Store {
     }
 
     public void checkOutMenu() {
-        printStream.println("Please choose a book!\nBook name: ");
-        String bookName = readLine();
-        if (library.checkOut(bookName)) {
-            printStream.println("Thank you! Enjoy the book");
-        } else {
-            printStream.println("Sorry, that book is not available");
-        }
     }
 
     public void returningMenu(){
