@@ -4,8 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.twu.biblioteca.menu.MenuInterface;
 import org.junit.Test;
 import org.junit.Before;
 
@@ -16,18 +19,16 @@ import static org.mockito.Mockito.when;
 
 public class StoreTest {
     private Store store;
-    private Library library;
-    private List<Book> books;
+    private Map<String, MenuInterface> menus;
     private PrintStream printStream;
     private BufferedReader bufferedReader;
 
     @Before
     public void setUp() throws Exception {
-        books = new ArrayList<>();
         printStream = mock(PrintStream.class);
         bufferedReader = mock(BufferedReader.class);
-        library = mock(Library.class);
-        store = new Store(library, printStream, bufferedReader);
+        menus = new HashMap<>();
+        store = new Store(menus, printStream, bufferedReader);
     }
 
     @Test
@@ -52,18 +53,5 @@ public class StoreTest {
         store.checkAction("quit");
 
         verify(this.printStream).println("Bye Bye");
-    }
-
-    @Test
-    public void ShowMenuAndNavigateToListOfBooksAfterSelect1() {
-        Book book = new Book("First Book", "First Author", 1997);
-        books.add(book);
-        when(library.getBooks()).thenReturn(books);
-
-        store.checkAction("1");
-        String expected = "Name | Author | Published Year\n";
-        expected += "First Book | First Author | 1997\n";
-
-        verify(this.printStream).println(expected);
     }
 }

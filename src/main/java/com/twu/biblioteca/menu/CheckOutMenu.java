@@ -26,16 +26,6 @@ public class CheckOutMenu extends Menu implements MenuInterface{
         }
     }
 
-    private String readLine(){
-        String action = null;
-        try {
-            action = bufferedReader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return action;
-    }
-
     public String getDescription() {
         return description;
     }

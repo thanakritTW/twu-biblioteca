@@ -3,6 +3,7 @@ package com.twu.biblioteca.menu;
 import com.twu.biblioteca.Library;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 
 public class Menu{
@@ -16,5 +17,15 @@ public class Menu{
         this.description = description;
         this.printStream = printStream;
         this.bufferedReader = bufferedReader;
+    }
+
+    protected String readLine(){
+        String action = null;
+        try {
+            action = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return action;
     }
 }

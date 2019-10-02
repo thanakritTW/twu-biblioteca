@@ -25,7 +25,6 @@ public class ReturnMenuTest {
 
     @Before
     public void setUp() throws Exception {
-        books = new ArrayList<>();
         printStream = mock(PrintStream.class);
         bufferedReader = mock(BufferedReader.class);
         library = mock(Library.class);
@@ -33,13 +32,9 @@ public class ReturnMenuTest {
     }
 
     @Test
-    public void Show_WhenSuccessfullyCheckOut_ShouldShowThankYou() throws IOException {
-        Book book = new Book("First Book", "First Author", 1997);
-        books.add(book);
-        Book book2 = new Book("Second Book", "Second Author", 1990);
-        books.add(book2);
-        book2.setAvailable(false);
-        when(library.returnBook("Second Book")).thenReturn(true);
+    public void Show_WhenSuccessfullyReturn_ShouldShowThankYou() throws IOException {
+        when(library.returnBook("First Book")).thenReturn(true);
+        when(bufferedReader.readLine()).thenReturn("First Book");
 
         menu.show();
 
@@ -47,12 +42,10 @@ public class ReturnMenuTest {
     }
 
     @Test
-    public void Show_WhenUnSuccessfullyCheckOut_ShouldShowSorry() throws IOException {
-        Book book = new Book("First Book", "First Author", 1997);
-        books.add(book);
-        when(bufferedReader.readLine()).thenReturn("First Book");
+    public void Show_WhenUnSuccessfullyReturn_ShouldShowSorry() throws IOException {
         when(library.returnBook("First Book")).thenReturn(false);
-        
+        when(bufferedReader.readLine()).thenReturn("First Book");
+
         menu.show();
 
         verify(this.printStream).println("Sorry that is not a valid book to return");

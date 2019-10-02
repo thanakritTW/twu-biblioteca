@@ -1,17 +1,19 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menu.MenuInterface;
+
 import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 public class Store {
     private PrintStream printStream;
     private BufferedReader bufferedReader;
-    private Library library;
+    private Map<String, MenuInterface> menus;
 
-    public Store(Library library, PrintStream printStream, BufferedReader bufferedReader) {
-        this.library = library;
+    public Store(Map<String, MenuInterface> menus, PrintStream printStream, BufferedReader bufferedReader) {
+        this.menus = menus;
         this.printStream = printStream;
         this.bufferedReader = bufferedReader;
     }
@@ -32,46 +34,22 @@ public class Store {
 
     public void listMenu() {
         String menuList = "Please select one of the following tasks\n";
-        menuList += "1 : List of Books\n";
-        menuList += "2 : Check out a Book\n";
-        menuList += "3 : Return a Book\n";
-        menuList += "Select (To quit plese enter 'quit'): ";
+        for (Map.Entry<String, MenuInterface> entry : menus.entrySet()) {
+            menuList += entry.getKey() + " : " + entry.getValue().getDescription() +"\n";
+        }
         printStream.println(menuList);
     }
 
-    public void checkOutMenu() {
-    }
-
-    public void returningMenu(){
-        printStream.println("Book name to return: ");
-        String bookName = readLine();
-        if (library.returnBook(bookName)) {
-            printStream.println("Thank you for returning the book");
-        } else {
-            printStream.println("Sorry that is not a valid book to return");
-        }
-    }
-
     public void checkAction(String action){
-        switch(action) {
-            case "1":
-                listBooks();
-                break;
-            case "2":
-                checkOutMenu();
-                break;
-            case "3":
-                returningMenu();
-                break;
-            case "quit":
-                printStream.println("Bye Bye");
-                break;
-            default:
-                printStream.println("Please select a valid option!");
+        if (action.equals("quit")){
+            printStream.println("Bye Bye");
+            return;
+        } else if (menus.containsKey(action)) {
+            menus.get(action).show();
+            return;
+        } else {
+            printStream.println("Please select a valid option!");
         }
-    }
-
-    public void listBooks() {
     }
 
     private String readLine(){
@@ -83,5 +61,4 @@ public class Store {
         }
         return action;
     }
-
 }

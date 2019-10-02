@@ -16,6 +16,13 @@ public class ReturnMenu extends Menu implements MenuInterface{
     }
 
     public void show(){
+        printStream.println("Book name to return: ");
+        String bookName = readLine();
+        if (library.returnBook(bookName)) {
+            printStream.println("Thank you for returning the book");
+        } else {
+            printStream.println("Sorry that is not a valid book to return");
+        }
     }
 
     public String getDescription() {
