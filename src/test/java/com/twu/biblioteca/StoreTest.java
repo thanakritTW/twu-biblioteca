@@ -67,34 +67,7 @@ public class StoreTest {
 
         verify(this.printStream).println(expected);
     }
-
-    @Test
-    public void ShouldTellUsefulMessageAfterSuccessfullyCheckingOutBook() throws IOException {
-        Book book = new Book("First Book", "First Author", 1997);
-        books.add(book);
-        Book book2 = new Book("Second Book", "Second Author", 1990);
-        books.add(book2);
-
-        when(library.checkOut("Second Book")).thenReturn(true);
-
-        when(bufferedReader.readLine()).thenReturn("Second Book");
-
-        store.checkOutMenu();
-
-        verify(this.printStream).println("Thank you! Enjoy the book");
-    }
-
-    @Test
-    public void ShouldTellUsefulMessageAfterUnSuccessfullyCheckingOutBook() throws IOException {
-        Book book = new Book("First Book", "First Author", 1997);
-        books.add(book);
-
-        when(bufferedReader.readLine()).thenReturn("Second Book");
-        store.checkOutMenu();
-
-        verify(this.printStream).println("Sorry, that book is not available");
-    }
-
+    
     @Test
     public void ShouldTellUsefulMessageAfterSuccessfullyReturnBook() throws IOException {
         Book book = new Book("First Book", "First Author", 1997);
