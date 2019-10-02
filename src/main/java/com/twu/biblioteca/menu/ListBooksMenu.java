@@ -1,5 +1,6 @@
 package com.twu.biblioteca.menu;
 
+import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Library;
 
 import java.io.BufferedReader;
@@ -16,6 +17,15 @@ public class ListBooksMenu extends Menu implements MenuInterface{
     }
 
     public void show(){
+        String bookList = "Name | Author | Published Year\n";
+        for (Book b: library.getBooks()) {
+            if (b.isAvailable()){
+                bookList += b.getName() + " | ";
+                bookList += b.getAuthor() + " | ";
+                bookList += b.getPublishedYear() + "\n";
+            }
+        }
+        printStream.println(bookList);
     }
 
     public String getDescription() {

@@ -79,15 +79,6 @@ public class Store {
     }
 
     public void listBooks() {
-        String bookList = "Name | Author | Published Year\n";
-        for (Book b: library.getBooks()) {
-            if (b.isAvailable()){
-                bookList += b.getName() + " | ";
-                bookList += b.getAuthor() + " | ";
-                bookList += b.getPublishedYear() + "\n";
-            }
-        }
-        printStream.println(bookList);
     }
 
     private String readLine(){
