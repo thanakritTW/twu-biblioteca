@@ -54,7 +54,6 @@ public class StoreTest {
         verify(this.printStream).println("Bye Bye");
     }
 
-
     @Test
     public void ShowMenuAndNavigateToListOfBooksAfterSelect1() {
         Book book = new Book("First Book", "First Author", 1997);
@@ -66,32 +65,5 @@ public class StoreTest {
         expected += "First Book | First Author | 1997\n";
 
         verify(this.printStream).println(expected);
-    }
-
-    @Test
-    public void ShouldTellUsefulMessageAfterSuccessfullyReturnBook() throws IOException {
-        Book book = new Book("First Book", "First Author", 1997);
-        books.add(book);
-        Book book2 = new Book("Second Book", "Second Author", 1990);
-        books.add(book2);
-        // Checking out the book
-        book2.setAvailable(false);
-        when(library.returnBook("Second Book")).thenReturn(true);
-
-        when(bufferedReader.readLine()).thenReturn("Second Book");
-        store.returningMenu();
-
-        verify(this.printStream).println("Thank you for returning the book");
-    }
-
-    @Test
-    public void ShouldTellUsefulMessageAfterUnSuccessfullyReturnOutBook() throws IOException {
-        Book book = new Book("First Book", "First Author", 1997);
-        books.add(book);
-
-        when(bufferedReader.readLine()).thenReturn("Second Book");
-        store.returningMenu();
-
-        verify(this.printStream).println("Sorry that is not a valid book to return");
     }
 }
