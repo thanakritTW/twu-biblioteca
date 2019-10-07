@@ -1,19 +1,20 @@
 package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.Library;
+import com.twu.biblioteca.MovieShop;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
-public class Menu{
-    protected Library library;
+public class MovieShopMenu{
+    protected MovieShop movieShop;
     protected String description;
     protected PrintStream printStream;
     protected BufferedReader bufferedReader;
 
-    public Menu(Library library, String description, PrintStream printStream, BufferedReader bufferedReader) {
-        this.library = library;
+    public MovieShopMenu(MovieShop movieShop, String description, PrintStream printStream, BufferedReader bufferedReader) {
+        this.movieShop = movieShop;
         this.description = description;
         this.printStream = printStream;
         this.bufferedReader = bufferedReader;

@@ -5,13 +5,13 @@ import com.twu.biblioteca.Library;
 import java.io.BufferedReader;
 import java.io.PrintStream;
 
-public class ReturnMenu extends Menu implements MenuInterface{
+public class ReturnLibraryMenu extends LibraryMenu implements MenuInterface{
 
-    public ReturnMenu(Library library, String description, PrintStream printStream, BufferedReader bufferedReader) {
+    public ReturnLibraryMenu(Library library, String description, PrintStream printStream, BufferedReader bufferedReader) {
         super(library, description, printStream, bufferedReader);
     }
 
-    public ReturnMenu(Library library, PrintStream printStream, BufferedReader bufferedReader) {
+    public ReturnLibraryMenu(Library library, PrintStream printStream, BufferedReader bufferedReader) {
         super(library, "Return the Book", printStream, bufferedReader);
     }
 

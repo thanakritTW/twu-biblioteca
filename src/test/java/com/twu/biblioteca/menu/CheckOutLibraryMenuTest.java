@@ -2,22 +2,18 @@ package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.Book;
 import com.twu.biblioteca.Library;
-import com.twu.biblioteca.Store;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-public class CheckOutMenuTest {
-    private CheckOutMenu menu;
+public class CheckOutLibraryMenuTest {
+    private CheckOutLibraryMenu menu;
     private Library library;
     private List<Book> books;
     private PrintStream printStream;
@@ -28,7 +24,7 @@ public class CheckOutMenuTest {
         printStream = mock(PrintStream.class);
         bufferedReader = mock(BufferedReader.class);
         library = mock(Library.class);
-        menu = new CheckOutMenu(library, printStream, bufferedReader);
+        menu = new CheckOutLibraryMenu(library, printStream, bufferedReader);
     }
 
     @Test

@@ -1,10 +1,10 @@
 package com.twu.biblioteca;
 
 
-import com.twu.biblioteca.menu.CheckOutMenu;
-import com.twu.biblioteca.menu.ListBooksMenu;
+import com.twu.biblioteca.menu.CheckOutLibraryMenu;
+import com.twu.biblioteca.menu.ListBooksLibraryMenu;
 import com.twu.biblioteca.menu.MenuInterface;
-import com.twu.biblioteca.menu.ReturnMenu;
+import com.twu.biblioteca.menu.ReturnLibraryMenu;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -24,10 +24,10 @@ public class BibliotecaApp {
         books.add(new Book("My Second Book","GwanGwan",1970));
         Library library = new Library(books);
 
-        HashMap<String, MenuInterface> menus = new HashMap<String, MenuInterface>();
-        menus.put("1",new CheckOutMenu(library, printStream, bufferedReader));
-        menus.put("2",new ListBooksMenu(library, printStream, bufferedReader));
-        menus.put("3",new ReturnMenu(library, printStream, bufferedReader));
+        Map<String, MenuInterface> menus = new HashMap<String, MenuInterface>();
+        menus.put("1",new CheckOutLibraryMenu(library, printStream, bufferedReader));
+        menus.put("2",new ListBooksLibraryMenu(library, printStream, bufferedReader));
+        menus.put("3",new ReturnLibraryMenu(library, printStream, bufferedReader));
 
         Store store = new Store(menus, printStream, bufferedReader);
         store.start();

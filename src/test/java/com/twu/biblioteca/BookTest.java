@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import org.checkerframework.common.value.qual.StaticallyExecutable;
 import org.junit.Test;
 
 import static org.junit.Assert.assertThat;
