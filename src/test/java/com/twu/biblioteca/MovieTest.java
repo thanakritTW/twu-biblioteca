@@ -7,7 +7,7 @@ import static org.junit.Assert.assertThat;
 
 public class MovieTest {
     @Test
-    public void ShouldReturnNameWhenGetName(){
+    public void Movie_ShouldReturnInformation_WhenCreatingObject(){
         Movie movie = new Movie("BookName1", "AuthorName1", 1997, 10);
 
         assertThat("BookName1", is(movie.getName()));
@@ -20,7 +20,7 @@ public class MovieTest {
         Movie movie = new Movie("BookName1", "AuthorName1", 1997, 10);
 
         boolean expected = movie.isAvailable();
-        
+
         assertThat(expected, is(true));
     }
 
