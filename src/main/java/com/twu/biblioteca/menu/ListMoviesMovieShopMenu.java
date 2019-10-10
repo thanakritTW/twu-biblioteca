@@ -25,7 +25,13 @@ public class ListMoviesMovieShopMenu extends MovieShopMenu implements MenuInterf
         List<Movie> movies = movieShop.getMovies();
         String movieList = "Name | Director | Year | Rating\n";
         for (Movie m: movies) {
-            movieList += String.format("%s | %s | %d | %d\n",m.getName(),m.getDirector(),m.getYear(),m.getRating());
+            if (m.isAvailable()){
+                movieList += String.format(
+                        "%s | %s | %d | %d\n",
+                        m.getName(),m.getDirector(),
+                        m.getYear(),m.getRating()
+                );
+            }
         }
         printStream.println(movieList);
     }

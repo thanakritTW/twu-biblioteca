@@ -19,6 +19,12 @@ public class CheckOutMovieShopMenu extends MovieShopMenu implements MenuInterfac
     }
 
     public void show(){
-
+        printStream.println("Please choose a Movie!\nBook name: ");
+        String bookName = readLine();
+        if (movieShop.checkOut(bookName)) {
+            printStream.println("Thank you! Enjoy the movie");
+        } else {
+            printStream.println("Sorry, that movie is not available");
+        }
     }
 }
