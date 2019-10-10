@@ -12,4 +12,14 @@ public class MovieShop {
     public List<Movie> getMovies() {
         return movies;
     }
+
+    public boolean checkOut(String movieName) {
+        for (Movie m: movies){
+            if (movieName.equals(m.getName())){
+                m.setAvailable(false);
+                return true;
+            }
+        }
+        return false;
+    }
 }

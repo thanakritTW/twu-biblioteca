@@ -12,12 +12,13 @@ import static org.junit.Assert.assertThat;
 public class MovieShopTest {
     private MovieShop movieShop;
     private List<Movie> movies;
+    private Movie movie;
 
     @Before
     public void setUp() throws Exception {
         movies = new ArrayList<>();
         movieShop = new MovieShop(movies);
-        Movie movie = new Movie("BookName1", "AuthorName1", 1997, 10);
+        movie = new Movie("BookName1", "AuthorName1", 1997, 10);
         movies.add(movie);
     }
 
@@ -30,10 +31,17 @@ public class MovieShopTest {
     }
 
     @Test
+    public void CheckOut_ShouldModifyMovieToUnavailable_IfItHasTheBook(){
+        movieShop.checkOut("BookName1");
+
+        assertThat(movie.isAvailable(),is(false));
+    }
+
+    @Test
     public void CheckOut_ShouldReturnFalse_IfItDoesNotHaveTheBook(){
         boolean output = movieShop.checkOut("BookName2");
 
-        assertThat(output,is(true));
+        assertThat(output,is(false));
     }
 
 }
