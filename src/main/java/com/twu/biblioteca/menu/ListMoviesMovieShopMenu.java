@@ -9,12 +9,21 @@ import java.util.List;
 
 public class ListMoviesMovieShopMenu extends MovieShopMenu implements MenuInterface {
     public ListMoviesMovieShopMenu(MovieShop movieShop, String description, PrintStream printStream, BufferedReader bufferedReader) {
-        super(movieShop, description, printStream, bufferedReader);
+        super(movieShop, description, printStream, bufferedReader,false);
     }
 
     public ListMoviesMovieShopMenu(MovieShop movieShop,PrintStream printStream, BufferedReader bufferedReader) {
-        super(movieShop, "List all available movies", printStream, bufferedReader);
+        super(movieShop, "List all available movies", printStream, bufferedReader,false);
     }
+
+    public ListMoviesMovieShopMenu(MovieShop movieShop, String description, PrintStream printStream, BufferedReader bufferedReader, boolean loggedInRequired) {
+        super(movieShop, description, printStream, bufferedReader, loggedInRequired);
+    }
+
+    public boolean isLoggedInRequired(){
+        return this.loggedInRequired;
+    }
+
 
     @Override
     public String getDescription() {

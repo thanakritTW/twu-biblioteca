@@ -9,11 +9,19 @@ import java.io.PrintStream;
 public class ListBooksLibraryMenu extends LibraryMenu implements MenuInterface{
 
     public ListBooksLibraryMenu(Library library, String description, PrintStream printStream, BufferedReader bufferedReader) {
-        super(library, description, printStream, bufferedReader);
+        super(library, description, printStream, bufferedReader,false);
     }
 
     public ListBooksLibraryMenu(Library library, PrintStream printStream, BufferedReader bufferedReader) {
-        super(library, "Show Books", printStream, bufferedReader);
+        super(library, "Show Books", printStream, bufferedReader, false);
+    }
+
+    public ListBooksLibraryMenu(Library library, String description, PrintStream printStream, BufferedReader bufferedReader, boolean loggedInRequired) {
+        super(library, description, printStream, bufferedReader, loggedInRequired);
+    }
+
+    public boolean isLoggedInRequired(){
+        return this.loggedInRequired;
     }
 
     public void show(){

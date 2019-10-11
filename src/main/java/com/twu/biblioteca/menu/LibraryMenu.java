@@ -11,12 +11,14 @@ public class LibraryMenu {
     protected String description;
     protected PrintStream printStream;
     protected BufferedReader bufferedReader;
+    protected boolean loggedInRequired;
 
-    public LibraryMenu(Library library, String description, PrintStream printStream, BufferedReader bufferedReader) {
+    public LibraryMenu(Library library, String description, PrintStream printStream, BufferedReader bufferedReader, boolean loggedInRequired) {
         this.library = library;
         this.description = description;
         this.printStream = printStream;
         this.bufferedReader = bufferedReader;
+        this.loggedInRequired = loggedInRequired;
     }
 
     protected String readLine(){

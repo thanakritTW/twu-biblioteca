@@ -15,6 +15,10 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         PrintStream printStream = new PrintStream(System.out);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        List<User> users = new ArrayList<>();
+        users.add(new User("142-7777", "Gwan",
+                "gwangwan@thoughtworks.com","0800000000"));
+
 
         List<Book> books = new ArrayList<>();
         books.add(new Book("My very First Book","Gwan",1996));

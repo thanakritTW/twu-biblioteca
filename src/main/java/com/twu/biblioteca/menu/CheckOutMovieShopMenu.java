@@ -7,11 +7,19 @@ import java.io.PrintStream;
 
 public class CheckOutMovieShopMenu extends MovieShopMenu implements MenuInterface {
     public CheckOutMovieShopMenu(MovieShop movieShop, String description, PrintStream printStream, BufferedReader bufferedReader) {
-        super(movieShop, description, printStream, bufferedReader);
+        super(movieShop, description, printStream, bufferedReader,true);
     }
 
     public CheckOutMovieShopMenu(MovieShop movieShop,PrintStream printStream, BufferedReader bufferedReader) {
-        super(movieShop, "Check out a movie", printStream, bufferedReader);
+        super(movieShop, "Check out a movie", printStream, bufferedReader,true);
+    }
+
+    public CheckOutMovieShopMenu(MovieShop movieShop, String description, PrintStream printStream, BufferedReader bufferedReader, boolean loggedInRequired) {
+        super(movieShop, description, printStream, bufferedReader, loggedInRequired);
+    }
+    
+    public boolean isLoggedInRequired(){
+        return this.loggedInRequired;
     }
 
     public String getDescription() {

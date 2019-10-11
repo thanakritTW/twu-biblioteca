@@ -8,12 +8,21 @@ import java.io.PrintStream;
 public class ReturnLibraryMenu extends LibraryMenu implements MenuInterface{
 
     public ReturnLibraryMenu(Library library, String description, PrintStream printStream, BufferedReader bufferedReader) {
-        super(library, description, printStream, bufferedReader);
+        super(library, description, printStream, bufferedReader,true);
     }
 
     public ReturnLibraryMenu(Library library, PrintStream printStream, BufferedReader bufferedReader) {
-        super(library, "Return the Book", printStream, bufferedReader);
+        super(library, "Return the Book", printStream, bufferedReader, true);
     }
+
+    public ReturnLibraryMenu(Library library, String description, PrintStream printStream, BufferedReader bufferedReader, boolean loggedInRequired) {
+        super(library, description, printStream, bufferedReader, loggedInRequired);
+    }
+
+    public boolean isLoggedInRequired(){
+        return this.loggedInRequired;
+    }
+
 
     public void show(){
         printStream.println("Book name to return: ");
