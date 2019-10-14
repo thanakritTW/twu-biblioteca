@@ -19,12 +19,15 @@ import static org.mockito.Mockito.when;
 
 public class StoreTest {
     private Store store;
+    // mock
     private Map<String, MenuInterface> menus;
     private PrintStream printStream;
     private BufferedReader bufferedReader;
     private MenuInterface menu1;
     private MenuInterface menu2;
     private MenuInterface menu3;
+    private List<User> users;
+    private User user;
 
 
     @Before
@@ -34,9 +37,9 @@ public class StoreTest {
 
         menus = new HashMap<>();
 
-        List<User> users = new ArrayList<>();
-        users.add(new User("142-7777", "Gwan",
-                "gwangwan@thoughtworks.com","0800000000"));
+        users = new ArrayList<>();
+        user = mock(User.class);
+        users.add(user);
 
         Map<String, MenuInterface> menus = new HashMap<String, MenuInterface>();
 
@@ -46,16 +49,16 @@ public class StoreTest {
 
         when(menu1.getDescription()).thenReturn("This required log in");
         when(menu1.isLoggedInRequired()).thenReturn(true);
-        when(menu1.getDescription()).thenReturn("This does not required log in");
-        when(menu1.isLoggedInRequired()).thenReturn(false);
-        when(menu1.getDescription()).thenReturn("This also does not required log in");
-        when(menu1.isLoggedInRequired()).thenReturn(false);
+        when(menu2.getDescription()).thenReturn("This does not required log in");
+        when(menu2.isLoggedInRequired()).thenReturn(false);
+        when(menu3.getDescription()).thenReturn("This also does not required log in");
+        when(menu3.isLoggedInRequired()).thenReturn(false);
 
         menus.put("1",menu1);
         menus.put("2",menu2);
         menus.put("3",menu3);
 
-        store = new Store(menus, printStream, bufferedReader);
+        store = new Store(menus, users, printStream, bufferedReader);
     }
 
     @Test
@@ -83,8 +86,10 @@ public class StoreTest {
 
     @Test
     public void ListMenu_ShouldShowSomeMenus_WhenThereIsNoLogIn(){
-        String expected = "2 : This does not required log in\n" +
+        String expected = "Please select one of the following tasks\n" +
+                "2 : This does not required log in\n" +
                 "3 : This also does not required log in\n";
+        when(user.isLoggedIn()).thenReturn(false);
 
         store.listMenu();
 
@@ -93,9 +98,11 @@ public class StoreTest {
 
     @Test
     public void ListMenu_ShouldAllMenus_WhenThereIsLoggedIn(){
-        String expected = "1 : This required log in\n" +
+        String expected = "Please select one of the following tasks\n" +
+                "1 : This required log in\n" +
                 "2 : This does not required log in\n" +
                 "3 : This also does not required log in\n";
+        when(user.isLoggedIn()).thenReturn(true);
 
         store.listMenu();
 

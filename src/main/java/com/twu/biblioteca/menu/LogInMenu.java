@@ -8,11 +8,11 @@ import java.io.PrintStream;
 import java.util.List;
 
 public class LogInMenu implements MenuInterface {
-    protected List<User> users;
-    protected String description;
-    protected PrintStream printStream;
-    protected BufferedReader bufferedReader;
-    protected boolean loggedInRequired;
+    private List<User> users;
+    private String description;
+    private PrintStream printStream;
+    private BufferedReader bufferedReader;
+    private boolean loggedInRequired;
 
     public LogInMenu(List<User> users, String description, PrintStream printStream, BufferedReader bufferedReader, boolean loggedInRequired) {
         this.users = users;

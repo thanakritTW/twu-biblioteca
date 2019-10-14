@@ -25,8 +25,11 @@ public class LogInMenuTest {
         users = new ArrayList<>();
         User user = new User("142-7777", "Gwan",
                 "gwangwan@thoughtworks.com","0800000000");
+        User user2 = new User("144-2777", "Gwan2",
+                "gwangwan@thoughtworks.com","0800000000");
         user.setPassword("hashedpassword");
         users.add(user);
+        users.add(user2);
 
         menu = new LogInMenu(users, printStream, bufferedReader);
     }

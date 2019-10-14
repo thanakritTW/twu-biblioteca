@@ -37,8 +37,9 @@ public class BibliotecaApp {
         menus.put("4",new ListMoviesMovieShopMenu(movieShop, printStream, bufferedReader));
         menus.put("5",new CheckOutMovieShopMenu(movieShop, printStream, bufferedReader));
         menus.put("6",new LogInMenu(users, printStream, bufferedReader));
+        menus.put("7",new InformationMenu(users, printStream, bufferedReader));
 
-        Store store = new Store(menus, printStream, bufferedReader);
+        Store store = new Store(menus, users, printStream, bufferedReader);
         store.start();
     }
 }
