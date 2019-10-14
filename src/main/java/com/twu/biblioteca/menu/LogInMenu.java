@@ -26,6 +26,8 @@ public class LogInMenu implements MenuInterface {
         this.users = users;
         this.printStream = printStream;
         this.bufferedReader = bufferedReader;
+        this.description = "Log In";
+        this.loggedInRequired = false;
     }
 
     public void show(){
