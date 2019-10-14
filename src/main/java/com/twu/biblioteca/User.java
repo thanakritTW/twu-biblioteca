@@ -6,6 +6,15 @@ public class User {
     private String phoneNumber;
     private String username;
     private String password;
+    private boolean loggedIn;
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 
     public User(String username, String name, String email, String phoneNumber) {
         this.name = name;
@@ -13,6 +22,7 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.username = username;
         this.password = "hashedpassword";
+        this.loggedIn = false;
     }
 
     public String getUsername() {
@@ -29,5 +39,13 @@ public class User {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

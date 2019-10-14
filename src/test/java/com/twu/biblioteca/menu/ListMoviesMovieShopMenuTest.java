@@ -21,8 +21,6 @@ public class ListMoviesMovieShopMenuTest {
     private PrintStream printStream;
     private BufferedReader bufferedReader;
 
-
-
     @Before
     public void setUp() throws Exception {
         movieShop = mock(MovieShop.class);
