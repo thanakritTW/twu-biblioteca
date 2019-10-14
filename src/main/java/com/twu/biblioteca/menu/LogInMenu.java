@@ -3,6 +3,7 @@ package com.twu.biblioteca.menu;
 import com.twu.biblioteca.User;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
 
@@ -28,7 +29,36 @@ public class LogInMenu implements MenuInterface {
     }
 
     public void show(){
+        printStream.print("Username: ");
+        String username = readLine();
+        printStream.print("Password: ");
+        String password = readLine();
+        if (login(username, password)){
+            printStream.println("Successfully logged in");
+        } else {
+            printStream.println("username or password incorrect");
+        }
 
+    }
+
+    private boolean login(String username,String password){
+        for (User u: users){
+            if (u.getUsername().equals(username) && u.getPassword().equals(password)){
+                u.setLoggedIn(true);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private String readLine(){
+        String action = null;
+        try {
+            action = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return action;
     }
 
     @Override
